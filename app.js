@@ -87,20 +87,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // this function is called when adding a task from the form and when rebuilding the list from localStorage
   function addListItem(taskValue, state, store) {
     let todoItem = document.createElement("li");
+    let removeButton = document.createElement("button");
 
     // the completion state is added to the to do item
     // when adding from recallTodoList, this will be the state from localStorage
     // when adding from form, this will be incomplete by default
     todoItem.classList.add(state);
-    let removeButton = document.createElement("button");
+    todoItem.innerText = taskValue;
+    todoItem.setAttribute("class", state);
 
     removeButton.innerText = "X";
     removeButton.style.marginLeft = "10px";
-    todoItem.innerText = taskValue;
 
     todoItem.append(removeButton);
     todoList.append(todoItem);
-    todoItem.setAttribute("class", state);
+
     if (todoItem.classList.contains("complete")) {
       todoItem.style.textDecoration = "line-through";
     }
