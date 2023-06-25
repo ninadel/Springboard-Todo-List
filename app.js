@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     removeButton.innerText = "X";
     removeButton.style.marginLeft = "10px";
     todoItem.innerText = taskValue;
-    
+
     todoItem.append(removeButton);
     todoList.append(todoItem);
     todoItem.setAttribute("class", state);
@@ -120,10 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     let taskValue = document.querySelector("#task").value;
     // if the form valus is not blank, add the item to the list
-    if (taskValue !== "");
+    if (taskValue !== "") {
       addListItem(taskValue, "incomplete", true);
     }
   });
-
   recallTodoList();
 });
