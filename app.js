@@ -107,9 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     addItemClickListener(todoItem);
 
-    // clear the form after a task is added
-    todoForm.reset();
-
     // when adding an item, the to do list may be stored in localStorage if the store flag is true
     // when adding an item from recallTodoList, this flag is false
     // when adding an item from the form, this flag is true
@@ -126,6 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // if the form valus is not blank, add the item to the list
     if (taskValue !== "") {
       addListItem(taskValue, "incomplete", true);
+      // clear the form after a task is added
+      todoForm.reset();
     }
   });
   recallTodoList();
