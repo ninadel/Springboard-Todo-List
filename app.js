@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         listItem = storedList[i];
         listItemTaskValue = listItem[0];
         listItemState = listItem[1];
+
+        // add each stored item to the to do list, but do not update localStorage after each addition
         addListItem(listItemTaskValue, listItemState, false);
       }
     } else {
