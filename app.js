@@ -130,5 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
       todoForm.reset();
     }
   });
+
+  // on page load, check if there's a list in localStorage and if so rebuild it
   recallTodoList();
 });
