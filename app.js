@@ -16,10 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // let todoStorage = [];
   // // console.log("hoooo");
 
-  function recallTodoList() {
-    console.log("recallTodoList");
-  }
-
   function storeTodoList() {
     let todoStorage = [];
     todoItems = document.querySelectorAll("li");
