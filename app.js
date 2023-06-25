@@ -58,15 +58,16 @@ document.addEventListener("DOMContentLoaded", function () {
         listItemTaskValue = listItem[0];
         console.log("listItemTaskValue", listItemTaskValue);
         listItemState = listItem[1];
-        addListItem(listItemTaskValue, listItemState);
+        addListItem(listItemTaskValue, listItemState, false);
       }
     } else {
       console.log("skipping recall");
     }
+    console.log("storing after recall");
     storeTodoList();
   }
 
-  function addListItem(taskValue, state) {
+  function addListItem(taskValue, state, store) {
     let todoItem = document.createElement("li");
     todoItem.classList.add(state);
     let removeButton = document.createElement("button");
@@ -88,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(targetTag);
       if (targetTag === "BUTTON") {
         e.target.parentNode.remove();
+        storeTodoList();
       } else if (targetTag === "LI") {
         if (e.target.classList.contains("incomplete")) {
           e.target.style.textDecoration = "line-through";
@@ -105,15 +107,19 @@ document.addEventListener("DOMContentLoaded", function () {
           // console.log(e.target.classList);
         }
       }
+      storeTodoList();
     });
-    storeTodoList();
+    if (store) {
+      storeTodoList();
+    }
   }
 
   todoForm.addEventListener("submit", function (event) {
     event.preventDefault();
     let taskValue = document.querySelector("#task").value;
-
-    addListItem(taskValue, "incomplete");
+    if (taskValue !== "") {
+      addListItem(taskValue, "incomplete", true);
+    }
   });
 
   recallTodoList();
