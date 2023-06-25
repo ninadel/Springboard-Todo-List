@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(targetTag);
       if (targetTag === "BUTTON") {
         e.target.parentNode.remove();
-        storeTodoList();
       } else if (targetTag === "LI") {
         if (e.target.classList.contains("incomplete")) {
           e.target.style.textDecoration = "line-through";
@@ -123,5 +122,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   recallTodoList();
-  storeTodoList();
 });
