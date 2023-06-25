@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // when the form is submitted, the form input is handled
+  // add a listener so that when the form is submitted, the form input is handled
   todoForm.addEventListener("submit", function (event) {
     // by default, submitting a form refreshses a page, so this default action is disabled
     event.preventDefault();
