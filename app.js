@@ -60,6 +60,29 @@ document.addEventListener("DOMContentLoaded", function () {
     storeTodoList();
   }
 
+  function addItemClickListener(todoItem) {
+    todoItem.addEventListener("click", function (e) {
+      let targetTag = e.target.tagName;
+      // clicking on the task (remove) button removes the list item
+      if (targetTag === "BUTTON") {
+        e.target.parentNode.remove();
+        // clicking on the task text toggles the item complete or incomplete
+      } else if (targetTag === "LI") {
+        if (e.target.classList.contains("incomplete")) {
+          e.target.style.textDecoration = "line-through";
+          e.target.classList.add("complete");
+          e.target.classList.remove("incomplete");
+        } else if (todoItem.classList.contains("complete")) {
+          e.target.style.textDecoration = "none";
+          e.target.classList.add("incomplete");
+          e.target.classList.remove("complete");
+        }
+      }
+      // whenever an item is clicked, update the stored to do list in localStorage
+      storeTodoList();
+    });
+  }
+
   // a function that adds a task to the list
   // this function is called when adding a task from the form and when rebuilding the list from localStorage
   function addListItem(taskValue, state, store) {
@@ -82,29 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
       todoItem.style.textDecoration = "line-through";
     }
 
+    addItemClickListener(todoItem);
+
     // clear the form after a task is added
     todoForm.reset();
-
-    todoItem.addEventListener("click", function (e) {
-      let targetTag = e.target.tagName;
-      // clicking on the task (remove) button removes the list item
-      if (targetTag === "BUTTON") {
-        e.target.parentNode.remove();
-        // clicking on the task text toggles the item complete or incomplete
-      } else if (targetTag === "LI") {
-        if (e.target.classList.contains("incomplete")) {
-          e.target.style.textDecoration = "line-through";
-          e.target.classList.add("complete");
-          e.target.classList.remove("incomplete");
-        } else if (todoItem.classList.contains("complete")) {
-          e.target.style.textDecoration = "none";
-          e.target.classList.add("incomplete");
-          e.target.classList.remove("complete");
-        }
-      }
-      // whenever an item is clicked, update the stored to do list in localStorage
-      storeTodoList();
-    });
 
     // when adding an item, the to do list may be stored in localStorage if the store flag is true
     // when adding an item from recallTodoList, this flag is false
