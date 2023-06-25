@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function storeTodoList() {
     let todoStorage = [];
-    todoItems = document.querySelectorAll("li");
+    let todoItems = document.querySelectorAll("li");
     console.log(todoItems);
     console.log(todoItems.length);
 
@@ -31,8 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (item.classList.contains("incomplete")) {
         // console.log(itemText);
         todoStorage.push([itemText, "incomplete"]);
+        console.log("storing incomplete");
       } else if (item.classList.contains("complete")) {
         todoStorage.push([itemText, "complete"]);
+        console.log("storing complete");
       }
       localStorage.setItem("storedList", JSON.stringify(todoStorage));
     }
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function recallTodoList() {
     let storedList = JSON.parse(localStorage.getItem("storedList"));
+    let listItemTaskValue = null;
     let listItemState = null;
     console.log("recallTodoList");
     console.log("storedList", storedList);
@@ -64,6 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
     todoItem.innerText = taskValue;
     todoItem.append(removeButton);
     todoList.append(todoItem);
+    todoItem.setAttribute("class", state);
+    if (todoItem.classList.contains("complete")) {
+      todoItem.style.textDecoration = "line-through";
+    }
     storeTodoList();
 
     todoForm.reset();
