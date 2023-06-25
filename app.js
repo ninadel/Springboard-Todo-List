@@ -13,8 +13,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   let todoForm = this.querySelector("#newTodoForm");
   let todoList = this.querySelector("#todoList");
-  // let todoStorage = [];
-  // // console.log("hoooo");
 
   function storeTodoList() {
     localStorage.setItem("storedList", null);
@@ -27,13 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
       for (i = 0; i < todoItems.length; i++) {
         let item = todoItems[i];
         let itemText = null;
-        // itemText = item.innerText
-        // itemText = item.innerText.toString().slice(0, item.innerText.length - 1);
         itemText = item.innerText.slice(0, item.innerText.length - 1);
         console.log("itemText", itemText);
         console.log("item classlist", item.classList);
         if (item.classList.contains("incomplete")) {
-          // console.log(itemText);
           todoStorage.push([itemText, "incomplete"]);
           console.log("storing incomplete");
         } else if (item.classList.contains("complete")) {
@@ -103,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
           e.target.classList.add("incomplete");
           e.target.classList.remove("complete");
           console.log("classList after toggling complete", e.target.classList);
-          // console.log(e.target.classList);
         }
       }
       storeTodoList();
