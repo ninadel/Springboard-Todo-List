@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let item = todoItems[i];
       let itemText = null;
       itemText = item.innerText.toString().slice(0, item.innerText.length - 1);
-      console.log(itemText);
+      // itemText = item.innerText;
+      // console.log(itemText);
       if (item.classList.contains("incomplete")) {
         // console.log(itemText);
         todoStorage.push([itemText, "incomplete"]);
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(targetTag);
       if (targetTag === "BUTTON") {
         e.target.parentNode.remove();
+        storeTodoList();
       } else if (targetTag === "LI") {
         if (e.target.classList.contains("incomplete")) {
           e.target.style.textDecoration = "line-through";
@@ -84,11 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
           e.target.classList.remove("complete");
           // console.log(e.target.classList);
         }
+        storeTodoList();
       }
     });
   }
-
-  recallTodoList();
 
   todoForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -96,4 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     addListItem(taskValue, "incomplete");
   });
+
+  recallTodoList();
 });
